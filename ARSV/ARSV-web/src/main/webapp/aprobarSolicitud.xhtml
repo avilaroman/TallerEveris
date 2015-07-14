@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+                             "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:p="http://primefaces.org/ui"
+   template="/WEB-INF/templates/default.xhtml">
+ 
+   <f:metadata>
+   		<f:viewParam name="token" value="#{solicitudArsvController.token}" />
+		<f:viewParam name="idSolicitudCiudadano" value="#{solicitudArsvController.idSolicitudArsv}" />
+		<f:viewParam name="idTask" value="#{solicitudArsvController.idTask}" />		
+		<f:event  listener="#{solicitudArsvController.obtenerSolicitud}" type="preRenderView"/>
+	</f:metadata>
+	<ui:define name="content">
+		<h:form id="aprobarSolicitud" acceptcharset="utf-8">
+			<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+			<p:panel header="APROBAR SOLICITUD ARSV" style="width:880px;float: left;">
+				<h:panelGrid columns="4" width="800">
+					<h:panelGroup>
+						<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.tipoSolicitud']}" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="tipo" value="#{solicitudArsvController.solicitudArsv.tipoSolicitud.descripcion}" readonly="true" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel value="Estado Solicitud" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="estadoSolicitud" value="#{solicitudArsvController.solicitudArsv.arsvEstadoSolicitud.descripcion}" readonly="true" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel value="Numero Solicitud" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="numeroSolicitud" value="#{solicitudArsvController.solicitudArsv.id}" readonly="true"/>
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.correoElectronicoOperador']}" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="correoElectronico" value="#{solicitudArsvController.solicitudArsv.correoElectronicoOperador}" readonly="true"/>						
+					</h:panelGroup>
+				</h:panelGrid>
+				<br/>
+				<h3>Destinatario: </h3>	
+				<p:panel>
+					<p:scrollPanel style="height: 155px">					
+						<f:ajax event="change">
+							<p:selectManyCheckbox value="#{solicitudArsvController.unidadesArsvSeleccionadas}" layout="pageDirection">							
+								<f:selectItems value="#{solicitudArsvController.solicitudArsv.arsvRutas}" var="aUnidad" itemValue="#{aUnidad.posta}" itemLabel="#{aUnidad.posta}"/>
+							</p:selectManyCheckbox>
+						</f:ajax>				  
+					</p:scrollPanel>
+				</p:panel>
+				<br />
+				<p:outputLabel value="Agregar comentario: " />
+				<br />
+				<br />
+				<p:inputTextarea id="comentario" maxlength="2000" size="2000" style="height : 100px; width : 100%;" value="#{solicitudArsvController.comentarioAroAMB}" />
+				<br/>
+				<p:panelGrid columns="2" width="800">			
+					<p:commandButton id="asignar" update="display" value="Aprobar" onclick="confirmation.show()" ajax="true" style="width:410px;"/> 
+					<p:commandButton id="exit" value="Salir" onclick="window.close();" ajax="true" style="width:410px;"/> 					
+				</p:panelGrid>
+				
+				<p:confirmDialog id="confirmDialog" header="Aprobar" widgetVar="confirmation" message="Sr. Usuario: Desea aprobar la solicitud?" > 
+	               	<p:outputPanel id="display"> 
+	               		<h:panelGroup> 
+			        		<p:commandButton id="confirma" value="Confirmar" oncomplete="confirmation.hide(); window.close()" action="#{solicitudArsvController.asignarArsvAroAmb}"/>  
+			        		<p:commandButton id="cancela" value="Cancelar" onclick="confirmation.hide()" type="button" />
+	               		</h:panelGroup> 
+	                </p:outputPanel>  
+	    		</p:confirmDialog> 		
+	    	
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

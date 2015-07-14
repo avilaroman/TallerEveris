@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+                             "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="solicitudId"	value="#{solicitudArsvController.idSolicitudArsv}" />
+		<f:viewParam name="idTask" value="#{solicitudArsvController.idTask}" />
+		<f:viewParam name="token" value="#{solicitudArsvController.token}" />
+		<f:event listener="#{solicitudArsvController.obtenerSolicitud}"	type="preRenderView" />
+	</f:metadata>
+	<ui:define name="content">
+		<h:form id="tomarConocimiento" acceptcharset="utf-8">
+			<p:messages id="messages" showDetail="true" autoUpdate="true"
+				closable="true" />
+			<p:panel header="TOMAR CONOCIMIENTO" style="width:880px;float: left;">
+				<h:panelGrid>
+					<h:panelGroup>
+						<p:outputLabel value="Numero Solicitud" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="numeroSolicitud"
+							value="#{solicitudArsvController.solicitudArsv.id}"
+							readonly="true" />
+					</h:panelGroup>
+				</h:panelGrid>
+				<br />
+				<p:outputLabel value="Detalle Autorizacion: " />
+				<br />
+				<br />
+				<p:panel
+					header="Solicitud #{solicitudArsvController.solicitudArsv.id}"
+					style="width:850px;float: left;">
+					<p:panelGrid columns="2">
+						<p:outputLabel value="Nombre: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.nombreEmpresa}" />
+						<p:outputLabel value="Direccion: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.direccion}" />
+						<p:outputLabel value="Direccion Facturacion: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.direccionFacturacion}" />
+						<p:outputLabel value="Razon Social: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.razonSocial}" />
+						<p:outputLabel value="Matricula Aeronave: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.sacAeronave}" />
+						<p:outputLabel value="Nacionalidad: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.paisAeronave.descripcion}" />
+						<p:outputLabel value="Tipo Aeronave: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.sacAeronave}" />
+						<p:outputLabel value="MTOW: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.MTOW}" />
+						<p:outputLabel value="Unidad de Peso: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.unidadPeso.descripcion}" />
+						<p:outputLabel value="Nombre de Piloto al mando: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.nombrePiloto}" />
+						<p:outputLabel value="Objeto Vuelo: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.objetoVuelo.descripcion}" />
+						<p:outputLabel value="Clasificacion: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.clasificacion.descripcion}" />
+						<p:outputLabel value="Pais Origen: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.paisOrigen.descripcion}" />
+						<p:outputLabel value="OACI: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.arsvOACI.codigo}" />
+						<p:outputLabel value="CallSign: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.callSign}" />
+						<p:outputLabel value="Fecha Arribo: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.fechaArribo}">
+							<f:convertDateTime type="date" pattern="dd/MM/yyyy hh:mm" />
+						</h:outputText>
+						<p:outputLabel value="Fecha Salida: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.fechaSalida}">
+							<f:convertDateTime type="date" pattern="dd/MM/yyyy hh:mm" />
+						</h:outputText>
+						<p:outputLabel value="Validez Seguro: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.vigenciaSeguro}">
+							<f:convertDateTime type="date" pattern="dd/MM/yyyy" />
+						</h:outputText>
+						<p:outputLabel value="Cantidad Vuelos: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.cantidadVuelos}" />
+						<p:outputLabel value="Embarcador: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.embarcador}" />
+						<p:outputLabel value="Consignatario: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.consignatario}" />
+						<p:outputLabel value="Correo Electronico: " />
+						<h:outputText
+							value="#{solicitudArsvController.solicitudArsv.correoElectronico}" />
+					</p:panelGrid>
+					<br />
+					<br />
+						<h:panelGrid columns="2" width="800">
+							<h:panelGroup>
+								<p:fieldset id="detalleRutaArsv1"
+									legend="#{bundles.solicitudArsv['fieldset.esp.arsv.detalleRutas']}">
+									<p:dataTable id="detalleNArsv1" var="det"
+										value="#{solicitudArsvController.rutaPrincipal}">
+										<p:column headerText=" " style="width:25%">
+											<h:outputText value="#{det.tipoRuta}" />
+										</p:column>
+										<p:column
+											headerText="#{bundles.solicitudArsv['outputLabel.esp.arsv.ruta']}"
+											style="width:75%">
+											<h:outputText value="#{det.posta}" />
+										</p:column>
+									</p:dataTable>
+									<br />
+									<br />
+								</p:fieldset>
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:fieldset id="detalleRutaArsvAlternativa"
+									legend="#{bundles.solicitudArsv['fieldset.esp.arsv.detalleRutaAlternativa']}}">
+									<p:dataTable id="detalleNArsvAlternativa" var="det"
+										value="#{solicitudArsvController.rutaAlternativa}">
+										<p:column headerText=" " style="width:25%">
+											<h:outputText value="#{det.tipoRuta}" />
+										</p:column>
+										<p:column
+											headerText="#{bundles.solicitudArsv['outputLabel.esp.arsv.ruta']}"
+											style="width:75%">
+											<h:outputText value="#{det.posta}" />
+										</p:column>
+									</p:dataTable>
+									<br />
+									<br />
+								</p:fieldset>
+							</h:panelGroup>
+						</h:panelGrid>
+						<br/>
+					<h4>Observaciones:</h4>
+					<p:inputTextarea
+						value="#{solicitudArsvController.solicitudArsv.observaciones}"
+						cols="114" rows="5" id="respuesta" autoResize="false"
+						maxlength="1000" readonly="true" />
+					<br />
+					<br />
+
+					<h4>Comentario ARO AMB:</h4>
+
+					<p:inputTextarea
+						value="#{solicitudArsvController.solicitudArsv.comentarioAroAMB}"
+						cols="114" rows="5" id="comemntarioARO" autoResize="false"
+						maxlength="1000" disabled="true" />
+					<br />
+					<br/>
+						<ui:include src="/adjuntos/archivosArsvVer.xhtml"/>
+					<br />
+				</p:panel>
+				<center>
+					<p:commandButton id="aceptar" value="Aceptar"
+						action="#{solicitudArsvController.tomarConocimientoAprobado}"
+						oncomplete="window.close()" />
+				</center>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

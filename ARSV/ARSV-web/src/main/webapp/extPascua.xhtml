@@ -1,0 +1,304 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+                
+
+        <p:panel id="panelArchivos">
+	        <p:fieldset legend="Solicitud en Atencion">
+					<h:panelGrid columns="4" width="800">
+						<h:panelGroup>						
+							<p:outputLabel value="Numero Solicitud"/>
+						</h:panelGroup>
+						<h:panelGroup>							
+							<p:inputText id="numeroSolicitud" value="#{solicitudExtController.operacionPascua.id}" readonly="true"/>
+						</h:panelGroup>
+						<h:panelGroup>						
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.tipoSolicitud']}"/>
+						</h:panelGroup>
+						<h:panelGroup>							
+							<p:inputText id="tipoSolicitud" value="#{solicitudExtController.operacionPascua.tipoSolicitud.descripcion}" readonly="true"/>
+						</h:panelGroup>
+						<h:panelGroup>						
+							<p:outputLabel value="Estado Solicitud"/>
+						</h:panelGroup>
+						<h:panelGroup>							
+							<p:inputText id="estadoSolicitud" value="#{solicitudExtController.operacionPascua.arsvEstadoSolicitud.descripcion}" readonly="true"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="Fecha Solicitud"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="FechaSolicitud" value="#{solicitudExtController.operacionPascua.fechaCreacion}" readonly="true">
+								<f:convertDateTime pattern="dd/MM/yyyy"/>
+							</p:inputText>
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:fieldset>
+				<br/>
+				<p:fieldset legend="Datos del Operador / Data Operator">
+					<h:panelGrid columns="2" width="800">
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.nombreEmpresa']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.nombreEmpresa']}"	style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="nombreEmpresa"	value="#{solicitudExtController.operacionPascua.nombreEmpresa}" readonly="true" maxlength="50" size="60" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.direccion']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.direccion']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="direccion"	value="#{solicitudExtController.operacionPascua.direccion}" readonly="true" maxlength="50" size="60" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.direccionFacturacion']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.direccionFacturacion']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="direccionFacturacion" value="#{solicitudExtController.operacionPascua.direccionFacturacion}" readonly="true" maxlength="50" size="60" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.razonSocial']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.razonSocial']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="razonSocial" value="#{solicitudExtController.operacionPascua.razonSocial}"	readonly="true" maxlength="50" size="60" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.correoElectronico']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.correoElectronico']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="correoElectronicoOperadorArsv"	value="#{solicitudExtController.operacionPascua.correoElectronicoOperador}" maxlength="50" size="25" readonly="true" />
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:fieldset>
+				<br/>
+				<p:fieldset legend="Datos Aeronaves / Aircraft Data">
+					<h:panelGrid columns="4" width="800">
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.matriculaAeronave']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.matriculaAeronave']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="matriculaAeronave"	value="#{solicitudExtController.operacionPascua.aeronave.matricula}"	readonly="true" maxlength="50" size="25" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.nacionalidad']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.nacionalidad']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="arsvPaisOrigen" value="#{solicitudExtController.operacionPascua.paisAeronave.descripcion}" readonly="true" maxlength="50" size="25" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.tipoAeronave']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.tipoAeronave']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="arsvTipoAeronaves" value="#{solicitudExtController.operacionPascua.aeronave.tipo}"	readonly="true" maxlength="50" size="25"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.MTOW']}" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<br/>
+							<h:panelGrid columns="2" width="70">
+							<p:inputText id="MTOW" value="#{solicitudExtController.operacionPascua.MTOW}" readonly="true" maxlength="50" size="25" />
+							<p:inputText id="UnidadPeso" value="#{solicitudExtController.operacionPascua.unidadPeso.descripcion}" readonly="true" maxlength="50" size="10" />
+							<br />
+							</h:panelGrid>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.nombrePiloto']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.nombrePiloto']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="nombrePiloto" value="#{solicitudExtController.operacionPascua.nombrePiloto}" readonly="true" maxlength="50" size="25" />
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:fieldset>
+ 				<br/>
+				<p:fieldset legend="Datos Vuelo / Flight Data">
+					<h:panelGrid columns="4" width="745">
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.objetoVuelo']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.objetoVuelo']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="objetoVuelo" value="#{solicitudExtController.operacionPascua.objetoVuelo.descripcion}"	readonly="true" maxlength="50" size="25" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.clasificacionVuelo']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.clasificacionVuelo']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="arsvClasificacionesPascua" value="#{solicitudExtController.operacionPascua.clasificacion.descripcion}"	readonly="true" style="width:185px"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.paisOrigen']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.paisOrigen']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="arsvPaisOrigenPascua" value="#{solicitudExtController.operacionPascua.paisOrigen.descripcion}"	readonly="true" style="width:185px"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.OACI']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.OACI']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="arsvOACI" value="#{solicitudExtController.operacionPascua.arsvOACI.codigo}"	readonly="true" style="width:185px"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.callSign']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.callSign']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="arsvCallSign" value="#{solicitudExtController.operacionPascua.callSign}" readonly="true" style="width:185px"/>
+						</h:panelGroup>
+					</h:panelGrid>
+					<br/>
+					<h:panelGrid columns="2" width="800">
+					<h:panelGroup>
+						<p:fieldset id="detalleRutaArsv1"  legend="#{bundles.operacionPascua['fieldset.esp.solicitud.operacionPascua.detalleRIngresar']}">
+							<p:dataTable id="detalleNArsv1" var="det"
+								value="#{solicitudExtController.rutaPrincipal}">
+								<p:column headerText=" " style="width:25%">
+									<h:outputText value="#{det.tipoRuta}" />
+								</p:column>
+								<p:column headerText="#{bundles.operacionPascua['columna.esp.solicitud.operacionPascua.posta']}" style="width:75%">
+									<h:outputText value="#{det.posta}" />
+								</p:column>
+							</p:dataTable>
+							<br />
+							<br/>
+						</p:fieldset>
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:fieldset id="detalleRutaArsvAlternativa" legend="#{bundles.operacionPascua['fieldset.esp.solicitud.operacionPascua.detalleRalternativa']}">
+							<p:dataTable id="detalleNArsvAlternativa" var="det"
+								value="#{solicitudExtController.rutaAlternativa}">
+								<p:column headerText=" " style="width:25%">
+									<h:outputText value="#{det.tipoRuta}" />
+								</p:column>
+								<p:column headerText="#{bundles.operacionPascua['columna.esp.solicitud.operacionPascua.posta']}" style="width:75%">
+									<h:outputText value="#{det.posta}" />
+								</p:column>
+							</p:dataTable>
+							<br />
+							<br/>
+						</p:fieldset>
+					</h:panelGroup>
+				</h:panelGrid>
+					 <br/>
+					<p:fieldset legend="Fecha / Date">
+						<h:panelGrid columns="2">
+							<h:panelGroup>
+								<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.arriboIsla']}" />
+								<br />
+								<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.arriboIsla']}" style="color:grey" />
+							</h:panelGroup>							
+							<h:panelGroup>
+								<p:inputText id="arriboTerritorioNacional" value="#{solicitudExtController.operacionPascua.fechaArribo}" readonly="true" >
+									<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+								</p:inputText>	
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.salidaIsla']}" />
+								<br />
+								<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.salidaIsla']}"
+									style="color:grey" />
+							</h:panelGroup>							
+							<h:panelGroup>
+								<p:inputText id="salidaTerritorioNacional"	value="#{solicitudExtController.operacionPascua.fechaSalida}" readonly="true" >
+									<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+								</p:inputText>
+							</h:panelGroup>
+						</h:panelGrid>
+					</p:fieldset>
+					<br/>
+					<h:panelGrid columns="2">
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.observacion']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.observacion']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>						
+							<p:inputTextarea id="observacion" value="#{solicitudExtController.operacionPascua.observaciones}" readonly="true" maxlength="2000" size="2000" style="height : 150px; width : 600px;" />
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:fieldset>
+				<br/>
+				<p:fieldset legend="Vuelo Comercial / If Comercial Flight">
+					<h:panelGrid columns="2">
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.validezSeguro']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.validezSeguro']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="validezSeguro"	value="#{solicitudExtController.operacionPascua.vigenciaSeguro}"	readonly="true" >
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:inputText>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.cantidadVuelos']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.cantidadVuelos']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="cantidadVuelos" value="#{solicitudExtController.operacionPascua.cantidadVuelos}" readonly="true" maxlength="50" size="25" />
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:fieldset>
+				<br/>
+				<p:fieldset legend="Transporte de Carga / If Cargo flight" >
+					<h:panelGrid columns="2">
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.embarcador']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.embarcador']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="embarcador" value="#{solicitudExtController.operacionPascua.embarcador}"	readonly="true" maxlength="50" size="25" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.consignator']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.consignator']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="consignatario" value="#{solicitudExtController.operacionPascua.consignatario}" readonly="true" maxlength="50" size="25" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.correoElectronico']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.correoElectronico']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="correoElectronico"	value="#{solicitudExtController.operacionPascua.correoElectronico}" readonly="true" maxlength="50" size="25" />
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:fieldset>
+				<br/>	
+		</p:panel>
+
+	
+</ui:composition>

@@ -1,0 +1,481 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+                             "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:panelGrid>
+		<p:panel header="#{bundles.operacionPascua['header.esp.solicitud.operacionPascua.titulo']}" style="width:843px;float: left;" >
+			<p:fieldset legend="#{bundles.operacionPascua['legend.esp.solicitud.operacionPascua.tipoSolicitud']}" >
+				<h:panelGrid columns="2">
+					<h:panelGroup>
+						<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.tipoSolicitud']}"/>
+						<br/>
+						<p:outputLabel
+							value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.tipoSolicitud']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:selectOneRadio id="tipoSolicitudOperacionPascua" value="#{operacionPascuaController.tipoSolicitud}" layout="pageDirection" >
+							<f:selectItem itemLabel="#{bundles.operacionPascua['selectItem.esp.solicitud.operacionPascua.arribo']}" itemValue="ARRIBOPASCUA" />
+							<f:selectItem itemLabel="#{bundles.operacionPascua['selectItem.esp.solicitud.operacionPascua.sobrevuelo']}" itemValue="SOBREVUELOPASCUA"/>
+						</p:selectOneRadio>
+						<p:message for="tipoSolicitudOperacionPascua" />
+					</h:panelGroup>
+				</h:panelGrid>
+			</p:fieldset>	
+			<br/>
+			<p:fieldset legend="#{bundles.operacionPascua['fieldset.esp.solicitud.operacionPascua.datosOperador']}">
+				<h:panelGrid columns="2" width="800">
+				
+					<h:panelGroup>
+						<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.nombreEmpresa']}" />
+						<br />
+						<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.nombreEmpresa']}" style="color:grey"/> 
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="nomEmpresaPascua" value="#{operacionPascuaController.nuevaOperacionPascua.nombreEmpresa}" maxlength="50" size="50"/>
+						<p:message for="nomEmpresaPascua" />
+					</h:panelGroup>
+				
+					<h:panelGroup>
+						<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.direccion']}"/>
+						<br />
+						<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.direccion']}" style="color:grey"/>
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="dirPascua" value="#{operacionPascuaController.nuevaOperacionPascua.direccion}" maxlength="50" size="50"/>
+						<p:message for="dirPascua"/>
+					</h:panelGroup>
+				
+					<h:panelGroup>
+						<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.direccionFacturacion']}"/>
+						<br />
+						<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.direccionFacturacion']}"  style="color:grey"/>
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="dirFacturacionPascua" value="#{operacionPascuaController.nuevaOperacionPascua.direccionFacturacion}" maxlength="50" size="50"/>
+						<p:message for="dirFacturacionPascua" />
+					</h:panelGroup>
+				
+					<h:panelGroup>
+						<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.razonSocial']}" />
+						<br />
+						<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.razonSocial']}" style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="razSocialPascua" value="#{operacionPascuaController.nuevaOperacionPascua.razonSocial}" maxlength="50" size="50"/>
+						<p:message for="razSocialPascua"/>
+					</h:panelGroup>						
+					
+					<h:panelGroup>
+						<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.correoElectronico']}" />
+						<br />
+						<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.correoElectronico']}" style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="corElectronicoOperadorPascua" value="#{operacionPascuaController.nuevaOperacionPascua.correoElectronicoOperador}" size="50" />
+						<p:message for="corElectronicoOperadorPascua"/>
+					</h:panelGroup>
+				</h:panelGrid>
+			</p:fieldset>
+			<br/>
+			<p:fieldset legend="#{bundles.operacionPascua['fieldset.esp.solicitud.operacionPascua.datosAeronaves']}">
+				<h:panelGrid columns="4" width="800">
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.matriculaAeronave']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.matriculaAeronave']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="matriculaAeronaveOperacionPascua"
+								value="#{operacionPascuaController.nuevaOperacionPascua.sacAeronave}"
+								maxlength="50" size="25" >
+								<p:ajax event="blur"  update="operacionPascuaTipoAeronave" listener="#{operacionPascuaController.cargarOperadorAeronave()}"/>
+							</p:inputText>
+							<br/>
+						<p:message for="matriculaAeronaveOperacionPascua" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.nacionalidad']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.nacionalidad']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:selectOneMenu id="operacionPascuaPaisOrigen"
+							value="#{operacionPascuaController.nuevaOperacionPascua.paisAeronave.id}"
+							style="width:185px">
+							<f:selectItem itemLabel="Seleccione" itemValue="0" />
+							<f:selectItems value="#{operacionPascuaController.arsvPaisesOrigen}"
+								var="aPaisOrigen" itemValue="#{aPaisOrigen.id}"
+								itemLabel="#{aPaisOrigen.descripcion}" />
+						</p:selectOneMenu>
+						<p:message for="operacionPascuaPaisOrigen" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.tipoAeronave']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.tipoAeronave']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="operacionPascuaTipoAeronave"
+							value="#{operacionPascuaController.nuevaOperacionPascua.aeronave.tipo}"
+							maxlength="50" size="25" disabled="true" />
+						<br />
+						<p:message for="operacionPascuaTipoAeronave" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.MTOW']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.MTOW']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup >
+						<br />
+						<h:panelGrid columns="2" width="70">
+						<p:inputText id="MTOWPascua"
+							value="#{operacionPascuaController.nuevaOperacionPascua.MTOW}" maxlength="50"
+							size="15" converterMessage="Debe ingresar un n&uacute;mero entero">
+							<f:validateLongRange minimum="0" />
+							<f:convertNumber type="number" />	
+						</p:inputText>
+						<p:selectOneMenu id="arsvUnidadPesoPascua"
+							value="#{operacionPascuaController.nuevaOperacionPascua.unidadPeso.codigo}"
+							style="width:50px">
+							<f:selectItems value="#{operacionPascuaController.arsvUnidadPeso}"
+								var="aUnidadPeso" itemValue="#{aUnidadPeso.codigo}"
+								itemLabel="#{aUnidadPeso.codigo}" />
+						</p:selectOneMenu>
+						<br />
+						<p:message for="MTOWPascua" />	
+						</h:panelGrid>					
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.nombrePiloto']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.nombrePiloto']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="nomPilotoOperacionPascua"
+							value="#{operacionPascuaController.nuevaOperacionPascua.nombrePiloto}"
+							maxlength="50" size="25" />
+						<br />
+						<p:message for="nomPilotoOperacionPascua" />
+					</h:panelGroup>
+				</h:panelGrid>
+			</p:fieldset>
+		    <br/>
+			<p:fieldset legend="#{bundles.operacionPascua['fieldset.esp.solicitud.operacionPascua.datosVuelo']}">
+				<h:panelGrid columns="4" width="800">
+					<h:panelGroup>
+						<h:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.objetoVuelo']}" />
+						<br />
+						<h:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.objetoVuelo']}" style="color:grey"/>
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:selectOneMenu id="objVueloOperacionPascua"
+							value="#{operacionPascuaController.nuevaOperacionPascua.objetoVuelo.codigo}"
+							style="width:185px">
+							<f:selectItem itemLabel="Seleccione" itemValue="0" />
+							<f:selectItems value="#{operacionPascuaController.arsvObjetoVuelo}"
+								var="aObjetoVuelo" itemValue="#{aObjetoVuelo.codigo}"
+								itemLabel="#{aObjetoVuelo.descripcion}" />
+						</p:selectOneMenu>
+						<p:message for="objVueloOperacionPascua" />
+					</h:panelGroup>	
+				
+					<h:panelGroup>
+						<h:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.clasificacionVuelo']}" />
+						<br />
+						<h:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.clasificacionVuelo']}" style="color:grey"/>
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:selectOneMenu id="claOperacionPascua"
+							value="#{operacionPascuaController.nuevaOperacionPascua.clasificacion.codigo}"
+							style="width:185px">
+							<f:selectItem itemLabel="Seleccione" itemValue="0" />
+							<f:selectItems value="#{operacionPascuaController.arsvClasificaciones}"
+								var="aClasificaciones" itemValue="#{aClasificaciones.codigo}"
+								itemLabel="#{aClasificaciones.descripcion}" />
+						</p:selectOneMenu>
+						<p:message for="claOperacionPascua" />
+					</h:panelGroup>	
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.paisOrigen']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.paisOrigen']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:selectOneMenu id="arsvPaisOrigenPascua"
+							value="#{operacionPascuaController.nuevaOperacionPascua.paisOrigen.id}"
+							style="width:185px" >
+							<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+							<f:selectItems value="#{operacionPascuaController.arsvPaisesOrigen}"
+								var="aPaisOrigen" itemValue="#{aPaisOrigen.id}"
+								itemLabel="#{aPaisOrigen.descripcion}" />
+						<p:ajax update="arsvOACIPascua" listener="#{operacionPascuaController.cargarOACI()}"/>
+						</p:selectOneMenu>
+						<p:message for="arsvPaisOrigenPascua" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.OACI']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.OACI']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:selectOneMenu id="arsvOACIPascua"
+							value="#{operacionPascuaController.nuevaOperacionPascua.arsvOACI.codigo}"
+							style="width:185px">
+							<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+							<f:selectItems value="#{operacionPascuaController.oacis}"
+								var="aOACI" itemValue="#{aOACI.codigo}"
+								itemLabel="#{aOACI.descripcion}" />
+						</p:selectOneMenu>
+						<p:message for="arsvOACIPascua" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.callSign']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.callSign']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="callSignPascua"
+							value="#{operacionPascuaController.nuevaOperacionPascua.callSign}"
+							maxlength="10" size="25" />
+						<br />
+						<p:message for="callSignPascua" />
+					</h:panelGroup>					
+				</h:panelGrid>
+				
+				<br />
+				<h:panelGrid columns="2" width="800">
+					<h:panelGroup>
+						<p:fieldset id="detalleRutaOperacionPascua1"  legend="#{bundles.operacionPascua['fieldset.esp.solicitud.operacionPascua.detalleRutas']}">
+							<p:dataTable id="detalleNOperacionPascua1" var="det"
+								value="#{operacionPascuaController.nuevaOperacionPascua.arsvRutas}">
+								<p:column headerText=" " style="width:25%">
+									<p:commandButton value="#{bundles.operacionPascua['btn.esp.solicitud.operacionPascua.eliminar']}"
+										actionListener="#{operacionPascuaController.eliminarRuta(det.id)}"
+										process="@this" update="detalleNOperacionPascua1" ajax="true" width="60" />
+								</p:column>
+								<p:column headerText="#{bundles.operacionPascua['columna.esp.solicitud.operacionPascua.posta']}" style="width:75%">
+									<h:outputText value="#{det.posta}" />
+								</p:column>
+							</p:dataTable>
+							<br />
+							<p:fieldset id="camposDetalleOperacionPascua1" legend="#{bundles.operacionPascua['fieldset.esp.solicitud.operacionPascua.detalleRIngresar']}">
+								<h:panelGrid id="panelDetalleOperacionPascua1" columns="2" width="250">
+									<h:panelGroup>
+										<h:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.ruta']}" />
+									</h:panelGroup>
+									<h:panelGroup>
+										<p:selectOneMenu id="opPascuaRutasDesdeOP1"
+											value="#{operacionPascuaController.nuevaRuta.idUnidad}" 
+											style="width:185px">
+											<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+											<f:selectItems value="#{operacionPascuaController.arsvUnidad}"
+												var="aCodigosOACI" itemValue="#{aCodigosOACI.id}" 
+												itemLabel="#{aCodigosOACI.nombre}" />
+										</p:selectOneMenu>
+										<p:message for="opPascuaRutasDesdeOP1" />
+									</h:panelGroup>
+								</h:panelGrid>
+								<br />
+								<p:blockUI widgetVar="BUI" block="detalleRutaOperacionPascua1">
+		  						Procesando...
+								</p:blockUI>
+								<p:commandButton id="btnAgregarOperacionPascua" value="#{bundles.operacionPascua['btn.esp.solicitud.operacionPascua.agregarPosta']}"
+									actionListener="#{operacionPascuaController.agregarRuta}"
+									process="@this, panelDetalleOperacionPascua1" update="detalleRutaOperacionPascua1, camposDetalleOperacionPascua1"
+									ajax="true" onclick="BUI.show()" oncomplete="BUI.hide()" />
+							</p:fieldset>
+							<br/>
+						</p:fieldset>
+					</h:panelGroup>
+					
+					<h:panelGroup>
+						<p:fieldset id="detalleRutaOpePascuaAlternativa" legend="#{bundles.operacionPascua['fieldset.esp.solicitud.operacionPascua.detalleRalternativa']}">
+							<p:dataTable id="detalleNOpePascuaAlternativa" var="det"
+								value="#{operacionPascuaController.nuevaOperacionPascua.arsvRutas2}">
+								<p:column headerText=" " style="width:25%">
+									<p:commandButton value="#{bundles.operacionPascua['btn.esp.solicitud.operacionPascua.eliminar']}"
+										actionListener="#{operacionPascuaController.eliminarRuta2(det.id)}"
+										process="@this" update="detalleNOpePascuaAlternativa" ajax="true" width="60" />
+								</p:column>
+								<p:column headerText="#{bundles.operacionPascua['columna.esp.solicitud.operacionPascua.posta']}" style="width:75%">
+									<h:outputText value="#{det.posta}" />
+								</p:column>
+							</p:dataTable>
+							<br />
+							<p:fieldset id="camposDetalleOpePascuaAlternativa" legend="#{bundles.operacionPascua['fieldset.esp.solicitud.operacionPascua.detalleRIngresar']}">
+								<h:panelGrid id="panelDetalleOpePascuaAlternativa" columns="2" width="250">
+									<h:panelGroup>
+										<h:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.ruta']}" />
+									</h:panelGroup>
+									<h:panelGroup>
+										<p:selectOneMenu id="opePascuaRutasDesdeOpePascuaAlternativa"
+											value="#{operacionPascuaController.nuevaRuta2.idUnidad}" 
+											style="width:185px">
+											<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+											<f:selectItems value="#{operacionPascuaController.arsvUnidad}"
+												var="aCodigosOACI" itemValue="#{aCodigosOACI.id}" 
+												itemLabel="#{aCodigosOACI.nombre}" />
+										</p:selectOneMenu>
+										<p:message for="opePascuaRutasDesdeOpePascuaAlternativa" />
+									</h:panelGroup>
+								</h:panelGrid>
+								<br />
+								<p:blockUI widgetVar="BUI2" block="detalleRutaOpePascuaAlternativa">
+		  						Procesando...
+								</p:blockUI>
+								<p:commandButton id="btnAgregarOpePascuaAlternativa" value="#{bundles.operacionPascua['btn.esp.solicitud.operacionPascua.agregarPosta']}"
+									actionListener="#{operacionPascuaController.agregarRuta2}"
+									process="@this, panelDetalleOpePascuaAlternativa" update="detalleRutaOpePascuaAlternativa, camposDetalleOpePascuaAlternativa"
+									ajax="true" onclick="BUI2.show()" oncomplete="BUI2.hide()" />
+							</p:fieldset>
+							<br/>
+						</p:fieldset>
+					</h:panelGroup>
+				</h:panelGrid>
+				<br/>
+				
+				<p:fieldset legend="#{bundles.operacionPascua['fieldset.esp.solicitud.operacionPascua.fecha']}">
+					<h:panelGrid columns="2" width="400">
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.arriboIsla']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.arriboIsla']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:calendar id="calArriboPascua" value="#{operacionPascuaController.nuevaOperacionPascua.fechaArribo}" readonlyInput="true" showOn="button" pattern="dd/MM/yyyy hh:mm"/>
+							<p:message for="calArriboPascua"/>
+						</h:panelGroup>
+					
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.salidaIsla']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.salidaIsla']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:calendar id="calSalidaPascua" value="#{operacionPascuaController.nuevaOperacionPascua.fechaSalida}" readonlyInput="true" showOn="button" pattern="dd/MM/yyyy hh:mm"/>
+							<p:message for="calSalidaPascua"/>
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:fieldset>
+			
+				<h:panelGrid columns="2" width="800">
+					<h:panelGroup>
+						<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.observacion']}"/>
+						<br />
+						<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.observacion']}" style="color:grey"/>
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputTextarea id="obsPascua" value="#{operacionPascuaController.nuevaOperacionPascua.observaciones}" style="height : 100px; width : 600px;"/>
+						<p:message for="obsPascua"/>
+					</h:panelGroup>
+				</h:panelGrid>
+			</p:fieldset>
+			<br/>
+			<h:panelGrid columns="2" width="800">
+				<h:panelGroup>
+					<p:fieldset legend="#{bundles.operacionPascua['fieldset.esp.solicitud.operacionPascua.fecha']}">
+					 <h:panelGrid columns="2" width="400">
+				 		<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.validezSeguro']}" />
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.validezSeguro']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:calendar id="calValidezSeguroPascua" value="#{operacionPascuaController.nuevaOperacionPascua.vigenciaSeguro}" readonlyInput="true" showOn="button" pattern="dd/MM/yyyy"/>
+							<p:message for="calValidezSeguroPascua"/>
+						</h:panelGroup>
+					
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.cantidadVuelos']}"/>
+							<br />
+							<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.cantidadVuelos']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:spinner id="canVuelosPascua" value="#{operacionPascuaController.nuevaOperacionPascua.cantidadVuelos}" style="width:185px" min="0"/>
+							<p:message for="canVuelosPascua"/>
+						</h:panelGroup>
+					 </h:panelGrid>
+					</p:fieldset>
+				</h:panelGroup>
+			</h:panelGrid>
+			<br/>
+			<p:fieldset legend="#{bundles.operacionPascua['fieldset.esp.solicitud.operacionPascua.transporteCarga']}">
+				<h:panelGrid columns="2" width="800">
+					<h:panelGroup>
+						<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.embarcador']}"/>
+						<br />
+						<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.embarcador']}" style="color:grey"/>
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="embPascua" value="#{operacionPascuaController.nuevaOperacionPascua.embarcador}" size="50" />
+						<p:message for="embPascua"/>
+					</h:panelGroup>
+				
+					<h:panelGroup>
+						<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.consignator']}"/>
+						<br />
+						<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.consignator']}" style="color:grey"/>
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="conPascua" value="#{operacionPascuaController.nuevaOperacionPascua.consignatario}" size="50" />
+						<p:message for="conPascua"/>
+					</h:panelGroup>
+					
+					<h:panelGroup>
+						<p:outputLabel value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.correoElectronico']}"/>
+						<br />
+						<p:outputLabel value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.correoElectronico']}" style="color:grey"/>
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="corElectronicoPascua" value="#{operacionPascuaController.nuevaOperacionPascua.correoElectronico}" size="50" />
+						<p:message for="corElectronicoPascua"/>
+					</h:panelGroup>
+				</h:panelGrid>
+			</p:fieldset>
+			<br />
+				<ui:include src="/adjuntos/archivosPascua.xhtml"/>
+			<br />
+			<center> 
+				<h2> <p:outputLabel value="#{bundles.operacionPascua['h3.esp.solicitud.operacionPascua.operacionDebera']}"/>  </h2> 
+			</center>
+			<br />
+			<center>
+				<p:commandButton id="ingresarOperacionPascua"
+				action="#{operacionPascuaController.register}" value="#{bundles.operacionPascua['btn.esp.solicitud.operacionPascua.ingresaOperacionPascua']}"
+				ajax="false" /> &nbsp; &nbsp; &nbsp;
+				<p:button value="Salir / Exit" action="window.close();" />
+			</center>
+		</p:panel>
+	</h:panelGrid>
+</ui:composition>

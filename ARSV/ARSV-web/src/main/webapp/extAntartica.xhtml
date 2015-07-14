@@ -1,0 +1,463 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+                
+    
+        <p:panel id="panelArchivos">
+	        <p:fieldset legend="Solicitud en Atencion">
+					<h:panelGrid columns="4" width="800">
+						<h:panelGroup>
+							<p:outputLabel value="Numero Solicitud" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="numeroSolicitud"
+								value="#{solicitudExtController.operacionAntartica.id}"
+								readonly="true" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="Tipo Solicitud" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="tipoSolicitud"
+								value="#{solicitudExtController.operacionAntartica.tipoSolicitud.descripcion}"
+								readonly="true" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="Estado Solicitud" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="estadoSolicitud"
+								value="#{solicitudExtController.operacionAntartica.arsvEstadoSolicitud.descripcion}"
+								readonly="true" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="Fecha Solicitud" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="FechaSolicitud"
+								value="#{solicitudExtController.operacionAntartica.fechaCreacion}"
+								readonly="true">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:inputText>
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:fieldset>
+				<br />
+				<p:fieldset
+					legend="#{bundles.operacionAntartica['fieldset.esp.solicitud.antartica.datosOperador']}">
+					<h:panelGrid columns="2" width="800">
+						<h:panelGroup>
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.nombreEmpresa']}" />
+							<br />
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.nombreEmpresa']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="nombreEmpresaOperacion"
+								value="#{solicitudExtController.operacionAntartica.nombreEmpresa}"
+								maxlength="50" size="73" readonly="true"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.direccionPostal']}" />
+							<br />
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.direccionPostal']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="direccionPostalAntartica"
+								value="#{solicitudExtController.operacionAntartica.direccionFacturacion}"
+								maxlength="50" size="73" readonly="true"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.nacionalidadOperador']}" />
+							<br />
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.nacionalidadOperador']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="nacionalidadOperadorAntartica"
+								value="#{solicitudExtController.operacionAntartica.paisAeronave.descripcion}"
+								style="width:530px" readonly="true"/>
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:fieldset>
+				<br />
+				<p:fieldset
+					legend="#{bundles.operacionAntartica['fieldset.esp.solicitud.antartica.datosAeronave']}">
+					<h:panelGrid columns="2">
+						<h:panelGroup>
+							<h:panelGrid columns="2" width="400px">
+								<h:panelGroup>
+									<p:outputLabel
+										value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.matriculaAeronave']}" />
+									<br />
+									<p:outputLabel
+										value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.matriculaAeronave']}"
+										style="color:grey" />
+								</h:panelGroup>
+								<h:panelGroup>
+									<p:inputText style="size:400px" id="matriculaAeronaveAntartica"
+										value="#{solicitudExtController.operacionAntartica.sacAeronave}"
+										maxlength="50" readonly="true">
+									</p:inputText>
+								</h:panelGroup>
+								<h:panelGroup>
+									<p:outputLabel
+										value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.tipoAeronave']}" />
+									<br />
+									<p:outputLabel
+										value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.tipoAeronave']}"
+										style="color:grey" />
+								</h:panelGroup>
+								<h:panelGroup>
+									<p:inputText id="arsvTipoAeronaveAntartica"
+										value="#{solicitudExtController.operacionAntartica.aeronave.tipo}"
+										maxlength="50" style="size:400px" readonly="true"/>
+								</h:panelGroup>
+								<h:panelGroup>
+							<p:outputLabel value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.mTOW']}" />
+							<br />
+									<p:outputLabel
+										value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.mTOW']}"
+										style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<br/>
+							<h:panelGrid columns="2" width="70">
+							<p:inputText id="MTOW" value="#{solicitudExtController.operacionAntartica.MTOW}" readonly="true" maxlength="50" size="25" />
+							<p:inputText id="UnidadPeso" value="#{solicitudExtController.operacionAntartica.unidadPeso.descripcion}" readonly="true" maxlength="50" size="10" />
+							<br />
+							</h:panelGrid>
+						</h:panelGroup>
+							</h:panelGrid>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:fieldset legend="Solo Aeronaves Comerciales">
+								<h:panelGrid columns="2">
+									<h:panelGroup>
+										<p:outputLabel
+											value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.cantidadAsientos']}" />
+										<br />
+										<p:outputLabel
+											value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.cantidadAsientos']}"
+											style="color:grey" />
+									</h:panelGroup>
+									<h:panelGroup>
+										<p:inputText id="cantidadPasajerosAntartica"
+											value="#{solicitudExtController.operacionAntartica.cantidadAsiento}"
+											min="0" maxlength="25" size="25" readonly="true"/>
+									</h:panelGroup>
+									<h:panelGroup>
+										<p:outputLabel
+											value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.fechaValidesSeguro']}" />
+										<br />
+										<p:outputLabel
+											value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.fechaValidesSeguro']}"
+											style="color:grey" />
+									</h:panelGroup>
+									<h:panelGroup>
+										<p:inputText id="validezSeguroAntartica" value="#{solicitudExtController.operacionAntartica.vigenciaSeguro}" readonly="true" size="21">
+											<f:convertDateTime pattern="dd/MM/yyyy" />
+										</p:inputText>
+									</h:panelGroup>
+								</h:panelGrid>
+							</p:fieldset>
+						</h:panelGroup>
+					</h:panelGrid>
+					<p:fieldset
+						legend="#{bundles.operacionAntartica['fieldset.esp.solicitud.antartica.datosPiloto']}">
+						<h:panelGrid columns="2">
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.nombrePiloto']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.nombrePiloto']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="nombrePilotoAntartica"
+									value="#{solicitudExtController.operacionAntartica.nombrePiloto}"
+									maxlength="50" style="width:500px" readonly="true"/>
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.licencia']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.licencia']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="licenciaAntartica"
+									value="#{solicitudExtController.operacionAntartica.licencia}"
+									maxlength="50" style="width:500px" readonly="true"/>
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.habilitaciones']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.habilitaciones']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="habilitacionesAntartica"
+									value="#{solicitudExtController.operacionAntartica.habilitacion}"
+									maxlength="50" style="width:500px" readonly="true">
+								</p:inputText>
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.nacionalidad']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.nacionalidad']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="nacionalidadAntartica"
+									value="#{solicitudExtController.operacionAntartica.paisOrigenPiloto.descripcion}"
+									style="width:500px" readonly="true"/>
+							</h:panelGroup>
+						</h:panelGrid>
+					</p:fieldset>
+				</p:fieldset>
+				<br />
+				<p:fieldset
+					legend="#{bundles.operacionAntartica['fieldset.esp.solicitud.antartica.datosVuelo']}">
+					<h:panelGrid columns="4" width="750px">
+						<h:panelGroup>
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.objetivo']}" />
+							<br />
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.objetivo']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="objetivoVueloAntartica"
+								value="#{solicitudExtController.operacionAntartica.objetoVuelo.descripcion}"
+								style="width:155px" readonly="true"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.clasificacionVuelo']}" />
+							<br />
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.clasificacionVuelo']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="arsvClasificacionOperAntartica"
+								value="#{solicitudExtController.operacionAntartica.clasificacion.descripcion}"
+								style="width:155px" readonly="true"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.numeroTripulantes']}" />
+							<br />
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.numeroTripulantes']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup style="size:100px">
+							<p:inputText id="numeroTripulantesAntartica"
+								value="#{solicitudExtController.operacionAntartica.numeroTripulantes}"
+								maxlength="25" readonly="true">
+							</p:inputText>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.tiempoPermanenciaTerritorio']}" />
+							<br />
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.tiempoPermanenciaTerritorio']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup style="size:100px">
+							<p:inputText id="tiempoPermanenciaAntartica"
+								value="#{solicitudExtController.operacionAntartica.tiempoPermanencia}"
+								maxlength="25" readonly="true">
+							</p:inputText>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.fechaArribo']}" />
+							<br />
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.fechaArribo']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup style="size:100px">
+							<p:inputText id="arriboTerritorioNacionalAntartica" value="#{solicitudExtController.operacionAntartica.fechaArribo}" readonly="true">
+								<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+							</p:inputText>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.fechaSalida']}" />
+							<br />
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.fechaSalida']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="salidaTerritorioNacionalAntartica"	value="#{solicitudExtController.operacionAntartica.fechaSalida}" readonly="true">
+								<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+							</p:inputText>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.baseOperacionTerritorio']}" />
+							<br />
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.baseOperacionTerritorio']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="baseOperacionAntartica"
+								value="#{solicitudExtController.operacionAntartica.arsvBaseOperacion.descripcion}"
+								style="width:155px" readonly="true"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.sistemaComunicacion']}" />
+							<br />
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.sistemaComunicacion']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="sistemaComunicacionAntartica"
+								value="#{solicitudExtController.operacionAntartica.arsvTipoComunicacion.descripcion}"
+								style="width:155px" readonly="true"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.paisOrigen']}" />
+							<br />
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.paisOrigen']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="paisOrigenAntartica"
+								value="#{solicitudExtController.operacionAntartica.paisOrigen.descripcion}"
+								style="width:155px" readonly="true"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.OACI']}" />
+							<br />
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.OACI']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="OACIAntartica"
+								value="#{solicitudExtController.operacionAntartica.arsvOACI.codigo}"
+								style="width:155px" readonly="true"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.callSign']}" />
+							<br />
+							<p:outputLabel
+								value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.callSign']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="callSignAntartica"
+								value="#{solicitudExtController.operacionAntartica.callSign}"
+								style="width:155px" readonly="true"/>
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:fieldset>
+				<br />
+				<h:panelGrid columns="2">
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.correoElectronico']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.correoElectronico']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="correoElectronicoAntartica"
+							value="#{solicitudExtController.operacionAntartica.correoElectronicoOperador}"
+							maxlength="50" style="width:500px" readonly="true"/>
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.lugarEmisionSolicitud']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.lugarEmisionSolicitud']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="lugarEmisionAntartica"
+							value="#{solicitudExtController.operacionAntartica.paisOrigenEmision.descripcion}"
+							style="width:500px" readonly="true"/>
+					</h:panelGroup>
+				</h:panelGrid>
+				<br />
+				<h:panelGrid>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.operacionAntartica['label.esp.solicitud.antartica.nombrePersonaSolicitanteSolicitud']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.operacionAntartica['label.eng.solicitud.antartica.nombrePersonaSolicitanteSolicitud']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="representanteAntartica"
+							value="#{solicitudExtController.operacionAntartica.representante}"
+							maxlength="50" style="width:800px" readonly="true"/>
+					</h:panelGroup>
+				</h:panelGrid>
+				<br />
+				<p:fieldset id="detalleEquipoSupervivencia"
+					legend="Detalle Equipos Supervivencia" width="750">
+					<h:panelGroup>
+						<p:dataTable id="detalleNArsv1" var="det"
+							value="#{solicitudExtController.operacionAntartica.arsvEquipoUsar}">
+							<p:column headerText="N Equipo" width="100">
+								<h:outputText value="#{det.id}" />
+							</p:column>
+							<p:column headerText="Equipo" width="100">
+								<h:outputText value="#{det.descripcion}" />
+							</p:column>
+						</p:dataTable>
+					</h:panelGroup>
+				</p:fieldset>
+				<br />
+				<p:fieldset id="detalleActividades" legend="Detalle Actividades"
+					width="750">
+					<h:panelGroup>
+						<p:dataTable id="detalleNArsv2" var="det"
+							value="#{solicitudExtController.operacionAntartica.arsvProgramaActividad}">
+							<p:column headerText="N Actividad" width="100">
+								<h:outputText value="#{det.id}" />
+							</p:column>
+							<p:column headerText="Actividad" width="100">
+								<h:outputText value="#{det.descripcion}" />
+							</p:column>
+						</p:dataTable>
+					</h:panelGroup>
+				</p:fieldset>
+				<br/>			
+		</p:panel>
+	
+</ui:composition>

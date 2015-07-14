@@ -1,0 +1,366 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+                             "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:p="http://primefaces.org/ui"
+   template="/WEB-INF/templates/default.xhtml">
+
+
+   <f:metadata>
+		<f:viewParam name="solicitudId" value="#{solicitudArsvController.idSolicitudArsv}" />		
+		<f:viewParam name="idTask" value="#{solicitudArsvController.idTask}" />
+		<f:viewParam name="token" value="#{solicitudArsvController.token}" />		
+		<f:event listener="#{solicitudArsvController.obtenerSolicitud}" type="preRenderView"/>
+	</f:metadata>
+	<ui:define name="content">
+		<h:form id="atenderSolicitudArriboSobrevuelo" acceptcharset="utf-8">
+			<p:panel header="ATENDER SOLICITUD ARSV" style="width:880px;float: left;">
+				<p:messages id="messages" globalOnly="true" showDetail="true" autoUpdate="true" closable="true" />
+			  	<p:fieldset legend="Solicitud en Atencion">
+					<h:panelGrid columns="4" width="800">
+						<h:panelGroup>						
+							<p:outputLabel value="Numero Solicitud"/>
+						</h:panelGroup>
+						<h:panelGroup>							
+							<p:inputText id="numeroSolicitud" value="#{solicitudArsvController.solicitudArsv.id}" readonly="true"/>
+						</h:panelGroup>
+						<h:panelGroup>						
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.tipoSolicitud']}"/>
+						</h:panelGroup>
+						<h:panelGroup>							
+							<p:inputText id="tipoSolicitud" value="#{solicitudArsvController.solicitudArsv.tipoSolicitud.descripcion}" readonly="true"/>
+						</h:panelGroup>
+						<h:panelGroup>						
+							<p:outputLabel value="Estado Solicitud"/>
+						</h:panelGroup>
+						<h:panelGroup>							
+							<p:inputText id="estadoSolicitud" value="#{solicitudArsvController.solicitudArsv.arsvEstadoSolicitud.descripcion}" readonly="true"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="Fecha Solicitud"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="FechaSolicitud" value="#{solicitudArsvController.solicitudArsv.fechaCreacion}" readonly="true">
+								<f:convertDateTime pattern="dd/MM/yyyy"/>
+							</p:inputText>
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:fieldset>
+				<br/>
+				<p:fieldset legend="Datos del Operador / Data Operator">
+					<h:panelGrid columns="2" width="800">
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.nombreEmpresa']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.nombreEmpresa']}"	style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="nombreEmpresa"	value="#{solicitudArsvController.solicitudArsv.nombreEmpresa}" readonly="true" maxlength="50" size="60" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.direccion']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.direccion']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="direccion"	value="#{solicitudArsvController.solicitudArsv.direccion}" readonly="true" maxlength="50" size="60" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.direccionFacturacion']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.direccionFacturacion']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="direccionFacturacion" value="#{solicitudArsvController.solicitudArsv.direccionFacturacion}" readonly="true" maxlength="50" size="60" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.razonSocial']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.razonSocial']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="razonSocial" value="#{solicitudArsvController.solicitudArsv.razonSocial}"	readonly="true" maxlength="50" size="60" />
+						</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.correoElectronicoOperador']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.correoElectronicoOperador']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="correoElectronicoOperadorArsv"
+							value="#{solicitudArsvController.solicitudArsv.correoElectronicoOperador}"
+							maxlength="50" size="25" readonly="true" />
+						<p:message for="correoElectronicoOperadorArsv" />
+					</h:panelGroup>
+					</h:panelGrid>
+				</p:fieldset>
+				<br/>
+				<p:fieldset legend="Datos Aeronaves / Aircraft Data">
+					<h:panelGrid columns="4" width="800">
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.matriculaAeronave']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.matriculaAeronave']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="matriculaAeronave"	value="#{solicitudArsvController.solicitudArsv.sacAeronave}"	readonly="true" maxlength="50" size="25" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.nacionalidad']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.nacionalidad']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="arsvPaisOrigen" value="#{solicitudArsvController.solicitudArsv.paisAeronave.descripcion}" readonly="true" maxlength="50" size="25" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.tipoAeronave']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.tipoAeronave']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="arsvTipoAeronaves" value="#{solicitudArsvController.solicitudArsv.aeronave.tipo}"	readonly="true" maxlength="50" size="25"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.mTOW']}" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<br/>
+							<h:panelGrid columns="2" width="70">
+							<p:inputText id="MTOW" value="#{solicitudArsvController.solicitudArsv.MTOW}" readonly="true" maxlength="50" size="25" />
+							<p:inputText id="UnidadPeso" value="#{solicitudArsvController.solicitudArsv.unidadPeso.descripcion}" readonly="true" maxlength="50" size="10" />
+							<br />
+							</h:panelGrid>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.nombrePiloto']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.nombrePiloto']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="nombrePiloto" value="#{solicitudArsvController.solicitudArsv.nombrePiloto}" readonly="true" maxlength="50" size="25" />
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:fieldset>
+ 				<br/>
+				<p:fieldset legend="Datos Vuelo / Flight Data">
+					<h:panelGrid columns="4" width="745">
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.objetoVuelo']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.objetoVuelo']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="objetoVuelo" value="#{solicitudArsvController.solicitudArsv.objetoVuelo.descripcion}"	readonly="true" maxlength="50" size="25" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.clasificacionVuelo']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.clasificacionVuelo']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="arsvClasificaciones" value="#{solicitudArsvController.solicitudArsv.clasificacion.descripcion}"	readonly="true" style="width:185px"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.paisOrigen']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.paisOrigen']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="arsvPaisOrigenSign" value="#{solicitudArsvController.solicitudArsv.paisOrigen.descripcion}" readonly="true" style="width:185px"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.OACI']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.OACI']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="arsvOACISign" value="#{solicitudArsvController.solicitudArsv.arsvOACI.codigo}" readonly="true" style="width:185px"/>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.callSign']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.callSign']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="arsvCallSign" value="#{solicitudArsvController.solicitudArsv.callSign}" readonly="true" style="width:185px"/>
+						</h:panelGroup>
+					</h:panelGrid>
+					<br/>
+					<h:panelGrid columns="2" width="800">
+					<h:panelGroup>
+						<p:fieldset id="detalleRutaArsv1"  legend="#{bundles.solicitudArsv['fieldset.esp.arsv.detalleRutas']}">
+							<p:dataTable id="detalleNArsv1" var="det"
+								value="#{solicitudArsvController.rutaPrincipal}">
+								<p:column headerText=" " style="width:25%">
+									<h:outputText value="#{det.tipoRuta}" />
+								</p:column>
+								<p:column headerText="#{bundles.solicitudArsv['column.esp.arsv.posta']}" style="width:75%">
+									<h:outputText value="#{det.posta}" />
+								</p:column>
+							</p:dataTable>
+							<br />
+							<br/>
+						</p:fieldset>
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:fieldset id="detalleRutaArsvAlternativa" legend="#{bundles.solicitudArsv['fieldset.esp.arsv.detalleRutaAlternativa']}">
+							<p:dataTable id="detalleNArsvAlternativa" var="det"
+								value="#{solicitudArsvController.rutaAlternativa}">
+								<p:column headerText=" " style="width:25%">
+									<h:outputText value="#{det.tipoRuta}" />
+								</p:column>
+								<p:column headerText="#{bundles.solicitudArsv['column.esp.arsv.posta']}" style="width:75%">
+									<h:outputText value="#{det.posta}" />
+								</p:column>
+							</p:dataTable>
+							<br />
+							<br/>
+						</p:fieldset>
+					</h:panelGroup>
+				</h:panelGrid>
+					<p:fieldset legend="Fecha / Date">
+						<h:panelGrid columns="2">
+							<h:panelGroup>
+								<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.arriboTerritorioNacional']}" />
+								<br />
+								<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.arriboTerritorioNacional']}" style="color:grey" />
+							</h:panelGroup>							
+							<h:panelGroup>
+								<p:inputText id="arriboTerritorioNacional" value="#{solicitudArsvController.solicitudArsv.fechaArribo}" readonly="true" >
+									<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+								</p:inputText>	
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.salidaTerritorioNacional']}" />
+								<br />
+								<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.salidaTerritorioNacional']}"
+									style="color:grey" />
+							</h:panelGroup>							
+							<h:panelGroup>
+								<p:inputText id="salidaTerritorioNacional"	value="#{solicitudArsvController.solicitudArsv.fechaSalida}" readonly="true" >
+									<f:convertDateTime pattern="dd/MM/yyyy hh:mm" />
+								</p:inputText>
+							</h:panelGroup>
+						</h:panelGrid>
+					</p:fieldset>
+					<br/>
+					<h:panelGrid columns="2">
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.observacion']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.observacion']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>						
+							<p:inputTextarea id="observacion" value="#{solicitudArsvController.solicitudArsv.observaciones}" readonly="true" maxlength="2000" size="2000" style="height : 150px; width : 600px;" />
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:fieldset>
+				<br/>
+				<p:fieldset legend="Vuelo Comercial / If Comercial Flight">
+					<h:panelGrid columns="2">
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.validezSeguro']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.validezSeguro']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="validezSeguro"	value="#{solicitudArsvController.solicitudArsv.vigenciaSeguro}"	readonly="true" >
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:inputText>
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.cantidadVuelos']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.cantidadVuelos']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="cantidadVuelos" value="#{solicitudArsvController.solicitudArsv.cantidadVuelos}" readonly="true" maxlength="50" size="25" />
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:fieldset>
+				<br/>
+				<p:fieldset legend="Transporte de Carga / If Cargo flight" >
+					<h:panelGrid columns="2">
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.embarcador']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.embarcador']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="embarcador" value="#{solicitudArsvController.solicitudArsv.embarcador}"	readonly="true" maxlength="50" size="25" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.consignatario']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.consignatario']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="consignatario" value="#{solicitudArsvController.solicitudArsv.consignatario}" readonly="true" maxlength="50" size="25" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.correoElectronico']}" />
+							<br />
+							<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.correoElectronico']}" style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputText id="correoElectronico"	value="#{solicitudArsvController.solicitudArsv.correoElectronico}" readonly="true" maxlength="50" size="25" />
+						</h:panelGroup>
+					</h:panelGrid>
+				</p:fieldset>	
+				<br/>
+					<ui:include src="/adjuntos/archivosArsvAtender.xhtml"/>
+				<br />
+				<p:fieldset legend="Datos Solicitados a Operador" rendered="#{solicitudArsvController.verificarAntecedentesSolicitados}">
+					<p:panel header="Antecedente Solicitados" style="width:800px;float: left;">
+						<h:form id="responderOperador" enctype="multipart/form-data">					
+							<h3>Mensaje de lo Solicitado</h3>	
+							<p:inputTextarea value="#{solicitudArsvController.solicitudArsv.antecedentesSolicitados}" cols="100" rows="5" id="solicitado" 
+								autoResize="false" maxlength="1000" readonly="true"/>
+							<br/>
+							<br/>
+							<h3>Antecedentes</h3>		
+							<p:inputTextarea value="#{solicitudArsvController.solicitudArsv.detalleSolicitud}" cols="100" rows="5" id="respuesta" 
+								autoResize="false" maxlength="1000"/>				
+							</h:form>		
+					</p:panel>
+				</p:fieldset>
+				<br />
+				<p:outputLabel value="Agregar comentario: " />
+				<br />
+				<br />
+				<p:inputTextarea id="comentario" maxlength="2000" size="2000" style="height : 100px; width : 100%;" value="#{solicitudArsvController.comentarioAroAMB}" />
+				<br/>
+				
+				<center>		
+				<h:panelGrid columns="4" width="800">
+					<p:commandButton id="solicitarCorrecion" value="Corregir" action="#{solicitudArsvController.irSolicitudMasAntecedente}" style="width:180px;">
+						<f:param name="idSolicitudArsv" value="#{solicitudArsvController.idSolicitudArsv}"/>
+						<f:viewParam name="idTask" value="#{solicitudArsvController.idTask}" />
+						<f:viewParam name="token" value="#{solicitudController.token}" />				
+					</p:commandButton>					
+					<p:commandButton id="aprobar" value="Aprobar" oncomplete="window.close()" action="#{solicitudArsvController.asignarArsvAroAmb}" style="width:180px;"/>
+					<p:commandButton id="rechazar" value="Rechazar" onclick="confirmation.show()" ajax="true" style="width:180px;"/>
+					<p:commandButton id="salir" value="Salir" onclick="window.close();" style="width:180px;"/>
+				</h:panelGrid>		
+				</center>		
+				
+				<p:confirmDialog id="confirmDialog" header="Aprobar" widgetVar="confirmation" message="Sr. Usuario: Desea Rechazar la solicitud?" > 
+	               	<p:outputPanel id="display"> 
+	               		<h:panelGroup> 
+			        		<p:commandButton id="confirma" value="Confirmar" oncomplete="confirmation.hide(); window.close()" action="#{solicitudArsvController.cerrarSolicitudCentralizador}"/>  
+			        		<p:commandButton id="cancela" value="Cancelar" onclick="confirmation.hide()" type="button" />
+	               		</h:panelGroup> 
+	                </p:outputPanel>  
+	    		</p:confirmDialog> 				
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

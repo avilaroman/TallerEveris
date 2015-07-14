@@ -1,0 +1,457 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+                             "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+	
+   <f:metadata>
+		<f:viewParam name="solicitudId" value="#{operacionPascuaController.idOperacionPascua}" />		
+		<f:viewParam name="idTask" value="#{operacionPascuaController.idTask}" />
+		<f:viewParam name="token" value="#{operacionPascuaController.token}" />		
+		<f:event listener="#{operacionPascuaController.obtenerSolicitud}" type="preRenderView"/>
+	</f:metadata>
+
+<ui:define name="content">
+		<h:form id="solicitudVentanaDeTiempo">
+			<h:panelGrid>
+				<p:panel
+					header="#{bundles.operacionPascua['header.esp.solicitud.ventanaTiempo.titulo']}"
+					style="width:843px;float: left;">
+					<p:messages id="mensajesGlobales" globalOnly="true"
+						showDetail="true" autoUpdate="true" closable="true" />
+
+					<p:fieldset
+						legend="#{bundles.operacionPascua['fieldset.esp.solicitud.ventanaTiempo.datosOperador']}">
+						<h:panelGrid columns="2" width="800">
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.nombreEmpresa']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.nombreEmpresa']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="nomEmpresaVentana"
+									value="#{operacionPascuaController.operacionPascua.nombreEmpresa}"
+									maxlength="50" size="50" readonly="true" />
+
+								<p:message for="nomEmpresaVentana" />
+							</h:panelGroup>
+
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.direccion']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.direccion']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="dirVentana"
+									value="#{operacionPascuaController.operacionPascua.direccion}"
+									maxlength="50" size="50" readonly="true" />
+								<p:message for="dirVentana" />
+							</h:panelGroup>
+
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.direccionFacturacion']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.direccionFacturacion']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="dirFacturacionVentana"
+									value="#{operacionPascuaController.operacionPascua.direccionFacturacion}"
+									maxlength="50" size="50" readonly="true" />
+								<p:message for="dirFacturacionVentana" />
+							</h:panelGroup>
+
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.razonSocial']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.razonSocial']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="razSocialVentana"
+									value="#{operacionPascuaController.operacionPascua.razonSocial}"
+									maxlength="50" size="50" readonly="true" />
+								<p:message for="razSocialVentana" />
+							</h:panelGroup>
+
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.correoElectronico']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.correoElectronico']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="corElectronicoVentana"
+									value="#{operacionPascuaController.operacionPascua.correoElectronicoOperador}"
+									maxlength="50" size="50" readonly="true" />
+								<p:message for="corElectronicoVentana" />
+							</h:panelGroup>
+						</h:panelGrid>
+					</p:fieldset>
+					<br/>
+					<p:fieldset
+						legend="#{bundles.operacionPascua['fieldset.esp.solicitud.ventanaTiempo.datosAeronaves']}">
+						<h:panelGrid columns="4" width="800">
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.matriculaAeronave']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.matriculaAeronave']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="matAeronaveVentana"
+									value="#{operacionPascuaController.operacionPascua.sacAeronave}"
+									maxlength="50" size="25" readonly="true" />
+								<p:message for="matAeronaveVentana" />
+							</h:panelGroup>
+
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.nacionalidad']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.nacionalidad']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="nacVentana"
+									value="#{operacionPascuaController.operacionPascua.paisAeronave.descripcion}"
+									maxlength="50" size="25" readonly="true" />
+								<p:message for="nacVentana" />
+							</h:panelGroup>
+
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.MTOW']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.MTOW']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<br/>
+								<h:panelGrid columns="2" width="70">
+								<p:inputText id="MTOW" value="#{operacionPascuaController.operacionPascua.MTOW}" readonly="true" maxlength="50" size="25" />
+								<p:inputText id="UnidadPeso" value="#{operacionPascuaController.operacionPascua.unidadPeso.descripcion}" readonly="true" maxlength="50" size="10" />
+								<br />
+								</h:panelGrid>
+							</h:panelGroup>
+
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.nombrePiloto']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.nombrePiloto']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="nomPilotoVentana"
+									value="#{operacionPascuaController.operacionPascua.nombrePiloto}"
+									maxlength="50" size="25" readonly="true" />
+								<p:message for="nomPilotoVentana" />
+							</h:panelGroup>
+						</h:panelGrid>
+					</p:fieldset>
+					<br/>
+					<p:fieldset
+						legend="#{bundles.operacionPascua['fieldset.esp.solicitud.ventanaTiempo.datosVuelo']}">
+						<h:panelGrid columns="4" width="800">
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.objetoVuelo']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.objetoVuelo']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="objVueloVentana"
+									value="#{operacionPascuaController.operacionPascua.objetoVuelo.descripcion}"
+									maxlength="50" size="25" readonly="true" />
+								<p:message for="objVueloVentana" />
+							</h:panelGroup>
+
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.clasificacionVuelo']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.clasificacionVuelo']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="claVueloVentana"
+									value="#{operacionPascuaController.operacionPascua.clasificacion.descripcion}"
+									maxlength="50" size="25" readonly="true" />
+								<p:message for="claVueloVentana" />
+							</h:panelGroup>
+							
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.paisOrigen']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.paisOrigen']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="paisOrigenVentana"
+									value="#{operacionPascuaController.operacionPascua.paisOrigen.descripcion}"
+									maxlength="50" size="25" readonly="true" />
+								<p:message for="paisOrigenVentana" />
+							</h:panelGroup>
+							
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.OACI']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.OACI']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="OACIVentana"
+									value="#{operacionPascuaController.operacionPascua.arsvOACI.codigo}"
+									maxlength="50" size="25" readonly="true" />
+								<p:message for="OACIVentana" />
+							</h:panelGroup>
+							
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.operacionPascua.callSign']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.operacionPascua.callSign']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="callSignVentana"
+									value="#{operacionPascuaController.operacionPascua.callSign}"
+									maxlength="50" size="25" readonly="true" />
+								<p:message for="callSignVentana" />
+							</h:panelGroup>
+
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.ruta']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.ruta']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<p:dataTable id="detalleNArsv1" var="det"
+								value="#{operacionPascuaController.operacionPascua.arsvRutas}">
+								<p:column headerText=" " width="100">
+									<h:outputText value="#{det.id}" />
+								</p:column>
+								<p:column headerText="Posta" width="100">
+									<h:outputText value="#{det.posta}" />
+								</p:column>
+							</p:dataTable>
+						</h:panelGrid>
+						<br />
+						<h:panelGrid>
+							<p:fieldset legend="Fecha">
+								<h:panelGrid columns="2" width="700">
+									<h:panelGroup>
+										<p:outputLabel
+											value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.arriboTerritorio']}" />
+										<br />
+										<p:outputLabel
+											value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.arriboTerritorio']}"
+											style="color:grey" />
+									</h:panelGroup>
+									<h:panelGroup>
+										<p:inputText id="arrTerritorioVentana"
+											value="#{operacionPascuaController.operacionPascua.fechaArribo}"
+											maxlength="50" size="50" readonly="true" />
+										<p:message for="arrTerritorioVentana" />
+									</h:panelGroup>
+
+									<h:panelGroup>
+										<p:outputLabel
+											value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.salidaTerritorio']}" />
+										<br />
+										<p:outputLabel
+											value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.salidaTerritorio']}"
+											style="color:grey" />
+									</h:panelGroup>
+									<h:panelGroup>
+										<p:inputText id="salTerritorioVentana"
+											value="#{operacionPascuaController.operacionPascua.fechaSalida}"
+											maxlength="50" size="50" readonly="true" />
+										<p:message for="salTerritorioVentana" />
+									</h:panelGroup>
+								</h:panelGrid>
+							</p:fieldset>
+						</h:panelGrid>
+						<h:panelGrid columns="2" width="800">
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.observacion']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.observacion']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputTextarea id="obsVentana"
+									value="#{operacionPascuaController.operacionPascua.observaciones}"
+									style="height : 100px; width : 600px;" readonly="true" />
+								<p:message for="obsVentana" />
+							</h:panelGroup>
+						</h:panelGrid>
+					</p:fieldset>
+					<br/>
+					<p:fieldset
+						legend="#{bundles.operacionPascua['fieldset.esp.solicitud.ventanaTiempo.fecha']}">
+						<h:panelGrid columns="2" width="450">
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.validezSeguro']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.validezSeguro']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="valSegurosVentana"
+									value="#{operacionPascuaController.operacionPascua.vigenciaSeguro}"
+									maxlength="50" size="25" readonly="true" />
+								<p:message for="valSegurosVentana" />
+							</h:panelGroup>
+
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.cantidadVuelos']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.cantidadVuelos']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="canVuelosVentana"
+									value="#{operacionPascuaController.operacionPascua.cantidadVuelos}"
+									maxlength="50" size="20" readonly="true" />
+								<p:message for="canVuelosVentana" />
+							</h:panelGroup>
+						</h:panelGrid>
+					</p:fieldset>
+					<br/>
+					<p:fieldset
+						legend="#{bundles.operacionPascua['fieldset.esp.solicitud.ventanaTiempo.transporteCarga']}">
+						<h:panelGrid columns="2" width="800">
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.embarcador']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.embarcador']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="embVentana"
+									value="#{operacionPascuaController.operacionPascua.embarcador}"
+									maxlength="50" size="50" readonly="true" />
+								<p:message for="embVentana" />
+							</h:panelGroup>
+
+							<h:panelGroup>
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.esp.solicitud.ventanaTiempo.consignator']}" />
+								<br />
+								<p:outputLabel
+									value="#{bundles.operacionPascua['label.eng.solicitud.ventanaTiempo.consignator']}"
+									style="color:grey" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<p:inputText id="conVentana"
+									value="#{operacionPascuaController.operacionPascua.consignatario}"
+									maxlength="50" size="50" readonly="true" />
+								<p:message for="conVentana" />
+							</h:panelGroup>
+						</h:panelGrid>
+					</p:fieldset>
+					<br/>
+						<ui:include src="/adjuntos/archivosPascuaVer.xhtml"/>
+					<br />
+					<br/>
+					<p:fieldset id="detalleVentanaTiempo" legend="Detalle Ventanas de Tiempo" width="750">
+						<p:dataTable id="detalleNAntartica" var="det" value="#{operacionPascuaController.operacionPascua.arsvVentanaTiempo}" scrollable="true" scrollWidth="750">
+							<p:column headerText=" " width="200">
+								<p:commandButton value="Eliminar"
+									actionListener="#{operacionPascuaController.eliminarVentanaTiempo(det.id)}"
+									process="@this" update="detalleNAntartica" ajax="true"
+									width="60" />
+							</p:column>
+							<p:column headerText="Hora Inicio" width="250">
+								<h:outputText value="#{det.horaInicial}">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm" type="time" timeZone="GMT-3"/>
+								</h:outputText>
+							</p:column>
+							<p:column headerText="Hora Termino" width="250">
+								<h:outputText value="#{det.horaFinal}" >
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm" type="time" timeZone="GMT-3"/>
+								</h:outputText>
+							</p:column>
+						</p:dataTable>
+						<br />
+						<p:fieldset id="camposDetalleVentanaTiempo"
+							legend="Ventana de tiempo designadas para la operacion">
+							<h:panelGrid id="panelDetalleVentanaTiempo" columns="2" width="700">
+								<h:panelGroup>
+									<h:outputLabel value="Hora Inicio" />
+								</h:panelGroup>
+								<h:panelGroup>
+									<p:calendar id="arsvVentanaTiempoInicial" value="#{operacionPascuaController.nuevaVentanaTiempo.horaInicial}" pattern="dd/MM/yyyy HH:mm"/>
+									<p:message for="arsvVentanaTiempoInicial" />
+								</h:panelGroup>
+								<h:panelGroup>
+									<h:outputLabel value="Hora Termino" />
+								</h:panelGroup>
+								<h:panelGroup>
+									<p:calendar id="arsvVentanaTiempoTermino" value="#{operacionPascuaController.nuevaVentanaTiempo.horaFinal}" pattern="dd/MM/yyyy HH:mm"/>
+									<p:message for="arsvVentanaTiempoTermino" />
+								</h:panelGroup>
+							</h:panelGrid>
+							<br />
+							<p:blockUI widgetVar="BUI" block="detalleVentanaTiempo">
+  							Procesando...
+							</p:blockUI>
+							<p:commandButton id="btnAgregarVentanaTiempo" value="Agregar Ventana Tiempo"
+								actionListener="#{operacionPascuaController.agregarVentanaTiempo}"
+								process="@this, panelDetalleVentanaTiempo" update="detalleVentanaTiempo, camposDetalleVentanaTiempo"
+								ajax="true" onclick="BUI.show()" oncomplete="BUI.hide()" />
+						</p:fieldset>
+						<br />
+					</p:fieldset>
+					</p:panel>
+			</h:panelGrid>
+			<br />
+			<center>
+				<p:commandButton id="ingresarVentanaTiempo" value="Enviar / Send"
+					ajax="false" action="#{operacionPascuaController.enviarVentanas}" rendered="#{operacionPascuaController.renderBtnAprovar}"/>
+				<p:button value="Salir / Exit" onclick="window.close();" />
+			</center>
+		</h:form>
+	</ui:define>
+</ui:composition>

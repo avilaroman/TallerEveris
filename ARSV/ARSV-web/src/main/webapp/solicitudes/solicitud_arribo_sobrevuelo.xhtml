@@ -1,0 +1,562 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+                             "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:panelGrid>
+
+		<p:panel header="#{bundles.solicitudArsv['panel.esp.arsv.ingresoSolicitud']}"
+			style="width:843px;float: left;">
+			
+			<p:fieldset legend="#{bundles.solicitudArsv['fieldset.esp.arsv.tipoSolicitud']}" >
+				<h:panelGrid columns="2">
+					<h:panelGroup>
+						<p:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.tipoSolicitud']}"/>
+						<br/>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.tipoSolicitud']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:selectOneRadio id="arsvTipoSolicitudArsv" value="#{solicitudArsvController.tipoSolicitud}" layout="pageDirection" >
+							<f:selectItem itemLabel="#{bundles.solicitudArsv['selectItem.esp.arsv.arribo']}" itemValue="ARRIBO" />
+							<f:selectItem itemLabel="#{bundles.solicitudArsv['selectItem.esp.arsv.sobrevuelo']}" itemValue="SOBREVUELO"/>
+						</p:selectOneRadio>
+						<p:message for="arsvTipoSolicitudArsv" />
+					</h:panelGroup>
+				</h:panelGrid>
+			</p:fieldset>
+			<br/>
+			<p:fieldset legend="#{bundles.solicitudArsv['fieldset.esp.arsv.datosOperador']}">
+				<h:panelGrid columns="2" width="700px">
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.nombreEmpresa']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.nombreEmpresa']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="nombreEmpresaArsv"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.nombreEmpresa}"
+							maxlength="50" size="50" />
+						<br />
+						<p:message for="nombreEmpresaArsv" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.direccion']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.direccion']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="direccionArsv"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.direccion}"
+							maxlength="50" size="50" />
+						<br />
+						<p:message for="direccionArsv" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.direccionFacturacion']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.direccionFacturacion']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="direccionFacturacionArsv"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.direccionFacturacion}"
+							maxlength="50" size="50" />
+						<br />
+						<p:message for="direccionFacturacionArsv" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.razonSocial']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.razonSocial']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="razonSocialArsv"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.razonSocial}"
+							maxlength="50" size="50" />
+						<br />
+						<p:message for="razonSocialArsv" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.correoElectronicoOperador']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.correoElectronicoOperador']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="correoElectronicoOperadorArsv"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.correoElectronicoOperador}"
+							maxlength="50" size="50" />
+						<p:message for="correoElectronicoOperadorArsv" />
+					</h:panelGroup>
+				</h:panelGrid>
+			</p:fieldset>
+			<br/>
+			<p:fieldset legend="#{bundles.solicitudArsv['fieldset.esp.arsv.datosAeronave']}">
+				<h:panelGrid columns="4" width="700">
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.matriculaAeronave']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.matriculaAeronave']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="matriculaAeronaveArsv"
+								value="#{solicitudArsvController.nuevaSolicitudArsv.sacAeronave}"
+								maxlength="50" size="25" >
+								<p:ajax event="blur"  update="arsvTipoAeronaveArsv" listener="#{solicitudArsvController.cargarOperadorAeronave()}"/>
+							</p:inputText>
+							<br/>
+						<p:message for="matriculaAeronaveArsv" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.nacionalidad']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.nacionalidad']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:selectOneMenu id="arsvNacionalidadArsv"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.paisAeronave.id}"
+							style="width:185px">
+							<f:selectItem itemLabel="Seleccione" itemValue="0" />
+							<f:selectItems value="#{solicitudArsvController.arsvPaisesOrigen}"
+								var="aPaisOrigen" itemValue="#{aPaisOrigen.id}"
+								itemLabel="#{aPaisOrigen.descripcion}" />
+						</p:selectOneMenu>
+						<p:message for="arsvNacionalidadArsv" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.tipoAeronave']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.tipoAeronave']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="arsvTipoAeronaveArsv"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.aeronave.tipo}"
+							maxlength="50" size="25" disabled="true" />
+						<br />
+						<p:message for="arsvTipoAeronaveArsv" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.mTOW']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.mTOW']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup >
+						<br />
+						<h:panelGrid columns="2" width="70">
+						<p:inputText id="MTOWArsv"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.MTOW}" maxlength="50"
+							size="15" converterMessage="Debe ingresar un n&uacute;mero entero">
+							<f:validateLongRange minimum="0" />
+							<f:convertNumber type="number" />	
+						</p:inputText>
+						<p:selectOneMenu id="arsvUnidadPeso"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.unidadPeso.codigo}"
+							style="width:50px">
+							<f:selectItems value="#{solicitudArsvController.arsvUnidadPeso}"
+								var="aUnidadPeso" itemValue="#{aUnidadPeso.codigo}"
+								itemLabel="#{aUnidadPeso.codigo}" />
+						</p:selectOneMenu>
+						<br />
+						<p:message for="MTOWArsv" />	
+						</h:panelGrid>					
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.nombrePiloto']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.nombrePiloto']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="nombrePilotoArsv"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.nombrePiloto}"
+							maxlength="50" size="25" />
+						<br />
+						<p:message for="nombrePilotoArsv" />
+					</h:panelGroup>
+				</h:panelGrid>
+			</p:fieldset>
+			<br/>
+			<p:fieldset legend="#{bundles.solicitudArsv['fieldset.esp.arsv.datosVuelo']}">
+				<h:panelGrid columns="4" width="800">
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.objetoVuelo']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.objetoVuelo']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:selectOneMenu id="objetoVueloArsv"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.objetoVuelo.codigo}"
+							style="width:185px">
+							<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+							<f:selectItems value="#{solicitudArsvController.arsvObjetoVuelo}"
+								var="aObjetoVuelo" itemValue="#{aObjetoVuelo.codigo}"
+								itemLabel="#{aObjetoVuelo.descripcion}" />
+						</p:selectOneMenu>
+						<p:message for="objetoVueloArsv" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.clasificacionVuelo']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.clasificacionVuelo']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:selectOneMenu id="arsvClasificacionArsv" 
+							value="#{solicitudArsvController.nuevaSolicitudArsv.clasificacion.codigo}"
+							style="width:185px">
+							<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+							<f:selectItems value="#{solicitudArsvController.arsvClasificaciones}"
+								var="aClasificacion" itemValue="#{aClasificacion.codigo}"
+								itemLabel="#{aClasificacion.descripcion}" />
+						</p:selectOneMenu>
+						<p:message for="arsvClasificacionArsv" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.paisOrigen']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.paisOrigen']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:selectOneMenu id="arsvPaisOrigenArsv"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.paisOrigen.id}"
+							style="width:185px" >
+							<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+							<f:selectItems value="#{solicitudArsvController.arsvPaisesOrigen}"
+								var="aPaisOrigen" itemValue="#{aPaisOrigen.id}"
+								itemLabel="#{aPaisOrigen.descripcion}" />
+						<p:ajax update="arsvOACIArsv" listener="#{solicitudArsvController.cargarOACI()}"/>
+						</p:selectOneMenu>
+						<p:message for="arsvPaisOrigenArsv" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.OACI']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.OACI']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:selectOneMenu id="arsvOACIArsv"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.arsvOACI.codigo}"
+							style="width:185px">
+							<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+							<f:selectItems value="#{solicitudArsvController.oacis}"
+								var="aOACI" itemValue="#{aOACI.codigo}"
+								itemLabel="#{aOACI.descripcion}" />
+						</p:selectOneMenu>
+						<p:message for="arsvOACIArsv" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.callSign']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.callSign']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="callSignArsv"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.callSign}"
+							maxlength="10" size="25" />
+						<br />
+						<p:message for="callSignArsv" />
+					</h:panelGroup>
+				</h:panelGrid>
+				<br />
+				<h:panelGrid columns="2" width="800">
+					<h:panelGroup>
+						<p:fieldset id="detalleRutaArsv1"  legend="#{bundles.solicitudArsv['fieldset.esp.arsv.detalleRutas']}">
+							<p:dataTable id="detalleNArsv1" var="det"
+								value="#{solicitudArsvController.nuevaSolicitudArsv.arsvRutas}">
+								<p:column headerText=" " style="width:25%">
+									<p:commandButton value="#{bundles.solicitudArsv['button.esp.arsv.eliminar']}"
+										actionListener="#{solicitudArsvController.eliminarRuta(det.id)}"
+										process="@this" update="detalleNArsv1" ajax="true" width="60" />
+								</p:column>
+								<p:column headerText="#{bundles.solicitudArsv['column.esp.arsv.posta']}" style="width:75%">
+									<h:outputText value="#{det.posta}" />
+								</p:column>
+							</p:dataTable>
+							<br />
+							<p:fieldset id="camposDetalleArsv1" legend="#{bundles.solicitudArsv['fieldset.esp.arsv.detalleRutaIngresar']}">
+								<h:panelGrid id="panelDetalleArsv1" columns="2" width="250">
+									<h:panelGroup>
+										<h:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.ruta']}" />
+									</h:panelGroup>
+									<h:panelGroup>
+										<p:selectOneMenu id="arsvRutasDesdeArsv1"
+											value="#{solicitudArsvController.nuevaRuta.idUnidad}" 
+											style="width:185px">
+											<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+											<f:selectItems value="#{solicitudArsvController.arsvUnidad}"
+												var="aCodigosOACI" itemValue="#{aCodigosOACI.id}" 
+												itemLabel="#{aCodigosOACI.nombre}" />
+										</p:selectOneMenu>
+										<p:message for="arsvRutasDesdeArsv1" />
+									</h:panelGroup>
+								</h:panelGrid>
+								<br />
+								<p:blockUI widgetVar="BUI" block="detalleRutaArsv1">
+		  						Procesando...
+								</p:blockUI>
+								<p:commandButton id="btnAgregarArsv1" value="#{bundles.solicitudArsv['button.esp.arsv.agregar']}"
+									actionListener="#{solicitudArsvController.agregarRuta}"
+									process="@this, panelDetalleArsv1" update="detalleRutaArsv1, camposDetalleArsv1"
+									ajax="true" onclick="BUI.show()" oncomplete="BUI.hide()" />
+							</p:fieldset>
+							<br/>
+						</p:fieldset>
+					</h:panelGroup>
+					
+					<h:panelGroup>
+						<p:fieldset id="detalleRutaArsvAlternativa" legend="#{bundles.solicitudArsv['fieldset.esp.arsv.detalleRutaAlternativa']}">
+							<p:dataTable id="detalleNArsvAlternativa" var="det"
+								value="#{solicitudArsvController.nuevaSolicitudArsv.arsvRutas2}">
+								<p:column headerText=" " style="width:25%">
+									<p:commandButton value="#{bundles.solicitudArsv['button.esp.arsv.eliminar']}"
+										actionListener="#{solicitudArsvController.eliminarRuta2(det.id)}"
+										process="@this" update="detalleNArsvAlternativa" ajax="true" width="60" />
+								</p:column>
+								<p:column headerText="#{bundles.solicitudArsv['column.esp.arsv.posta']}" style="width:75%">
+									<h:outputText value="#{det.posta}" />
+								</p:column>
+							</p:dataTable>
+							<br />
+							<p:fieldset id="camposDetalleArsvAlternativa" legend="#{bundles.solicitudArsv['fieldset.esp.arsv.detalleRutaAlternativaIngresar']}">
+								<h:panelGrid id="panelDetalleArsvAlternativa" columns="2" width="250">
+									<h:panelGroup>
+										<h:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.ruta']}" />
+									</h:panelGroup>
+									<h:panelGroup>
+										<p:selectOneMenu id="arsvRutasDesdeArsvAlternativa"
+											value="#{solicitudArsvController.nuevaRuta2.idUnidad}" 
+											style="width:185px">
+											<f:selectItem itemLabel="Seleccione" itemValue="#{null}" />
+											<f:selectItems value="#{solicitudArsvController.arsvUnidad}"
+												var="aCodigosOACI" itemValue="#{aCodigosOACI.id}" 
+												itemLabel="#{aCodigosOACI.nombre}" />
+										</p:selectOneMenu>
+										<p:message for="arsvRutasDesdeArsvAlternativa" />
+									</h:panelGroup>
+								</h:panelGrid>
+								<br />
+								<p:blockUI widgetVar="BUI2" block="detalleRutaArsvAlternativa">
+		  						Procesando...
+								</p:blockUI>
+								<p:commandButton id="btnAgregarArsvAlternativa" value="#{bundles.solicitudArsv['button.esp.arsv.agregar']}"
+									actionListener="#{solicitudArsvController.agregarRuta2}"
+									process="@this, panelDetalleArsvAlternativa" update="detalleRutaArsvAlternativa, camposDetalleArsvAlternativa"
+									ajax="true" onclick="BUI2.show()" oncomplete="BUI2.hide()" />
+							</p:fieldset>
+							<br/>
+						</p:fieldset>
+					</h:panelGroup>
+				</h:panelGrid>
+				<br/>
+				<p:fieldset legend="#{bundles.solicitudArsv['fieldset.esp.arsv.fecha']}">
+					<h:panelGrid columns="4" width="600">
+						<h:panelGroup>
+							<p:outputLabel
+								value="#{bundles.solicitudArsv['outputLabel.esp.arsv.arriboTerritorioNacional']}" />
+							<br />
+							<p:outputLabel
+								value="#{bundles.solicitudArsv['outputLabel.eng.arsv.arriboTerritorioNacional']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:calendar id="arriboTerritorioNacionalArsv"
+								value="#{solicitudArsvController.nuevaSolicitudArsv.fechaArribo}"
+								pattern="dd/MM/yyyy hh:mm" showOn="button" size="25" readonlyInput="true"
+								binding="#{fechaArriboComponent1}" />
+							<p:message for="arriboTerritorioNacionalArsv" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<h:outputLabel value="#{bundles.solicitudArsv['outputLabel.esp.arsv.mensaje']}" />
+					    </h:panelGroup>
+					    <h:panelGroup></h:panelGroup>
+						<h:panelGroup>
+							<p:outputLabel
+								value="#{bundles.solicitudArsv['outputLabel.esp.arsv.salidaTerritorioNacional']}" />
+							<br />
+							<p:outputLabel
+								value="#{bundles.solicitudArsv['outputLabel.eng.arsv.salidaTerritorioNacional']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:calendar id="salidaTerritorioNacionalArsv"
+								value="#{solicitudArsvController.nuevaSolicitudArsv.fechaSalida}"
+								pattern="dd/MM/yyyy hh:mm" showOn="button" size="25" readonlyInput="true"
+								binding="#{fechaSalidaComponent1}">
+
+								<f:validator validatorId="rangoFechasValidator" />
+								<f:attribute name="fechaArriboComponent1"
+									value="#{fechaArriboComponent1}" />
+							</p:calendar>
+							<p:message for="salidaTerritorioNacionalArsv" />
+						</h:panelGroup>
+						<h:panelGroup>
+					    	<h:outputLabel value="#{bundles.solicitudArsv['outputLabel.eng.arsv.mensaje']}" style="color:grey"/>
+					    </h:panelGroup>
+					    <h:panelGroup></h:panelGroup>
+					</h:panelGrid>
+					</p:fieldset>
+					<br/>
+					<h:panelGrid columns="2" width="800">
+						<h:panelGroup>
+							<p:outputLabel
+								value="#{bundles.solicitudArsv['outputLabel.esp.arsv.observacion']}" />
+							<br />
+							<p:outputLabel
+								value="#{bundles.solicitudArsv['outputLabel.eng.arsv.observacion']}"
+								style="color:grey" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:inputTextarea id="observacionArsv"
+								value="#{solicitudArsvController.nuevaSolicitudArsv.observaciones}"
+								maxlength="5000" size="5000" counter="ocPOC1NotesTx_counter" counterTemplate="{0} characters remaining."
+								style="height : 150px; width : 600px;"/>
+							<p:message for="observacionArsv" />
+						</h:panelGroup>
+					</h:panelGrid>
+					<p:outputLabel id="ocPOC1NotesTx_counter" />
+				</p:fieldset>
+				<br/>
+			<p:fieldset legend="#{bundles.solicitudArsv['fieldset.esp.arsv.vueloComercial']}">
+				<h:panelGrid columns="2" width="600">
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.validezSeguro']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.validezSeguro']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:calendar id="validezSeguroArsv"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.vigenciaSeguro}"
+							pattern="dd/MM/yyyy" showOn="button" size="25" readonlyInput="true">
+							<f:validator validatorId="validezSeguroValidator" />
+        					<f:attribute name="fechaSalidaComponent1" value="#{fechaSalidaComponent1}" />
+						</p:calendar>
+						<p:message for="validezSeguroArsv" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.cantidadVuelos']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.cantidadVuelos']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="cantidadVuelosArsv"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.cantidadVuelos}"
+							maxlength="50" size="25" converterMessage="Debe ingresar un n&uacute;mero entero" validatorMessage="Debe ser mayor a cero">
+							<f:validateLongRange minimum="0" />
+							<f:convertNumber type="number" />	
+						</p:inputText>
+						<p:message for="cantidadVuelosArsv" />
+					</h:panelGroup>
+				</h:panelGrid>
+			</p:fieldset>
+			<br/>
+			<p:fieldset legend="#{bundles.solicitudArsv['fieldset.esp.arsv.transporteCarga']}">
+				<h:panelGrid columns="2" width="700">
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.embarcador']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.embarcador']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="embarcadorArsv"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.embarcador}"
+							maxlength="50" size="25" />
+						<p:message for="embarcadorArsv" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.consignatario']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.consignatario']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="consignatarioArsv"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.consignatario}"
+							maxlength="50" size="25" />
+						<p:message for="consignatarioArsv" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.esp.arsv.correoElectronico']}" />
+						<br />
+						<p:outputLabel
+							value="#{bundles.solicitudArsv['outputLabel.eng.arsv.correoElectronico']}"
+							style="color:grey" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<p:inputText id="correoElectronicoArsv"
+							value="#{solicitudArsvController.nuevaSolicitudArsv.correoElectronico}"
+							maxlength="50" size="25"  />
+						<p:message for="correoElectronicoArsv" />
+					</h:panelGroup>
+				</h:panelGrid>
+			</p:fieldset>
+			<br/>
+				<ui:include src="/adjuntos/archivosArsv.xhtml"/>
+			<br />
+			<center>
+				<p:commandButton id="ingresarArsv"
+					action="#{solicitudArsvController.register}" value="#{bundles.solicitudArsv['button.esp.arsv.enviar']}"
+					ajax="false" /> &nbsp; &nbsp; &nbsp;
+				<p:button value="#{bundles.solicitudArsv['button.esp.arsv.eliminar']}" action="window.close();" />
+			</center>
+		</p:panel>
+	</h:panelGrid>
+</ui:composition>

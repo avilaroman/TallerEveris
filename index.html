@@ -58,5 +58,37 @@
   </div>
 
   
+</body><!doctype html>
+<html ng-app>
+<head>
+    <meta charset="utf-8">
+    <script src="angular.js"></script>
+	
+	<title>Angular</title>
+</head>
+<body>	
+	<p>Hola Mundo!</p>
+    <div>
+
+Introduce una palabra <input type="text" ng-model="palabra"><br>
+
+La palabra es <span ng-bind="palabra"></span>
+
+</div>
+    <hr>
+    <div  ng-init="palabra2 = 'hola'"> 
+        Introduce una palabra <input type="text" ng-model="palabra2"><br>
+        La palabra es <span ng-bind="palabra2"></span>
+    </div>
+    
+    <hr>
+    <div  ng-init="palabra3=ng-init"> 
+        Introduce una palabra <input type="checkbox" ng-checked="go" ng-model="go" ng-true-value="'YES'" ng-false-value="'NOOOOOO'" ><br>
+        La palabra es <span ng-bind="go"></span>
+        <br/>
+        <input type="checkbox" checked/>
+    </div>
+    
 </body>
+
 </html>
